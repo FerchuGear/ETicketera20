@@ -38,6 +38,7 @@ dependencies:
   supabase_flutter: ^2.5.6
   glassmorphism_ui: ^0.3.0
   pluto_menu_bar: ^3.0.1
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

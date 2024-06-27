@@ -27,32 +27,32 @@ class HomeScreen extends StatelessWidget {
           PopupMenuButton<int>(
             icon: const Icon(Icons.more_vert),
             onSelected: (int result) {
-              _menuAction(context, 'Item $result');
+              _menuAction(context, result);
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<int>>[
               const PopupMenuItem<int>(
                 value: 1,
-                child: Text('Item 1'),
+                child: Text('Cambiar tema'),
               ),
               const PopupMenuItem<int>(
                 value: 2,
-                child: Text('Item 2'),
+                child: Text('Notificaciones'),
               ),
               const PopupMenuItem<int>(
                 value: 3,
-                child: Text('Item 3'),
+                child: Text('Políticas de privacidad'),
               ),
               const PopupMenuItem<int>(
                 value: 4,
-                child: Text('Item 4'),
+                child: Text('Contacto'),
               ),
               const PopupMenuItem<int>(
                 value: 5,
-                child: Text('Item 5'),
+                child: Text('Editar perfil'),
               ),
               const PopupMenuItem<int>(
                 value: 6,
-                child: Text('Item 6'),
+                child: Text('Cerrar sesión'),
               ),
             ],
           ),
@@ -100,9 +100,50 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-  void _menuAction(BuildContext context, String action) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('You selected $action')),
+  void _menuAction(BuildContext context, int action) {
+    switch (action) {
+      case 1:
+        // Alternar el tema
+        MyApp.themeNotifier.value = MyApp.themeNotifier.value == AppTheme.darkTheme
+            ? ThemeData.light()
+            : AppTheme.darkTheme;
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const PrivacyScreen()),
+        );
+        break;
+      case 4:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ContactScreen()),
+        );
+        break;
+      case 5:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const EditProfileScreen()),
+        );
+        break;
+      case 6:
+        _logOut(context);
+        break;
+      default:
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('You selected Item $action')),
+        );
+        break;
+    }
+  }
+
+  Future<void> _logOut(BuildContext context) async {
+    final supabase = Supabase.instance.client;
+    await supabase.auth.signOut();
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const LogInScreen()),
+      (Route<dynamic> route) => false,
     );
   }
 }

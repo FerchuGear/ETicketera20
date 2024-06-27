@@ -1,3 +1,4 @@
+import 'package:eticketera20/providers/theme_notifier.dart';
 import 'package:eticketera20/screens/home_screen.dart';
 import 'package:eticketera20/screens/login_screen.dart';
 import 'package:eticketera20/themes/app_theme.dart';
@@ -11,17 +12,24 @@ Future<void> main() async {
   );
   runApp(const MyApp());
 }
+// ValueNotifier para manejar el tema
+  final ValueNotifier<ThemeData> themeNotifier = ValueNotifier<ThemeData>(AppTheme.darkTheme);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      darkTheme: AppTheme.darkTheme,
-      home: const HomeScreen(),
-      );
+    return AnimatedBuilder(
+      animation: themeNotifier,
+      builder: (context, _) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Material App',
+          theme: themeNotifier.value,
+          home: const HomeScreen(),
+        );
+      },
+    );
   }
 }
