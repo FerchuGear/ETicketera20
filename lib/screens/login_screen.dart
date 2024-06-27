@@ -65,6 +65,7 @@ class _LogInScreenState extends State<LogInScreen> {
               controller: _emailController,
               decoration: const InputDecoration(labelText: 'Correo Electrónico'),
             ),
+            const SizedBox(height: 20,),
             TextField(
 
               controller: _passwordController,
