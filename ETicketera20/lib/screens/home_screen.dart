@@ -104,9 +104,7 @@ class HomeScreen extends StatelessWidget {
     switch (action) {
       case 1:
         // Alternar el tema
-        MyApp.themeNotifier.value = MyApp.themeNotifier.value == AppTheme.darkTheme
-            ? ThemeData.light()
-            : AppTheme.darkTheme;
+        
         break;
       case 3:
         Navigator.push(

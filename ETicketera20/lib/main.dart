@@ -1,6 +1,5 @@
-import 'package:eticketera20/providers/theme_notifier.dart';
+
 import 'package:eticketera20/screens/home_screen.dart';
-import 'package:eticketera20/screens/login_screen.dart';
 import 'package:eticketera20/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -12,6 +11,7 @@ Future<void> main() async {
   );
   runApp(const MyApp());
 }
+//prueba de git
 // ValueNotifier para manejar el tema
   final ValueNotifier<ThemeData> themeNotifier = ValueNotifier<ThemeData>(AppTheme.darkTheme);
 
