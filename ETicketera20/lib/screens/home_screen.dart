@@ -2,7 +2,6 @@ import 'package:eticketera20/providers/providers.dart';
 import 'package:eticketera20/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
-import 'package:pluto_menu_bar/pluto_menu_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -11,14 +10,19 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData currentTheme = Provider.of<ThemeNotifier>(context).currentTheme;
+    // Porcentaje del ancho y alto del GlassContainer 
+    double containerWidthPercentage = 0.8;
+    double containerHeightPercentage = 0.3;
     return Scaffold(
+      //Estilo de la AppBar
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: Provider.of<ThemeNotifier>(context).currentTheme.appBarTheme.backgroundColor,
         title: const Text('Home'),
         leading: IconButton(
           icon: const Icon(Icons.home),
           onPressed: () {
-            // Redirigir a HomeScreen (mismo pantalla)
+            // Redirigir a HomeScreen
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -90,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text('Cerrar sesión '),
-                      Icon(Icons.logout),
+                      Icon(Icons.logout, color: Colors.red),
                     ],
                   ),
               ),
@@ -101,40 +105,84 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            GlassContainer(
-              blur: 5,
-              color: Colors.white.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.white.withOpacity(0.5), width: 1.5),
-              child: const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  'Tickets',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            const SizedBox(height: 20),
+            FractionallySizedBox(
+              child: GlassContainer(
+                width: MediaQuery.of(context).size.width * containerWidthPercentage,
+                height: MediaQuery.of(context).size.height * containerHeightPercentage,
+                blur: 5,
+                color: Colors.white.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Colors.white.withOpacity(0.5), width: 1.5),
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Tickets restantes:',
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,),
+                    ),
+                    Text(
+                      '3/3',
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                  ] 
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
+            const SizedBox(height: 30),
+            ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const RequestScreen()),
                 );
               },
-              child: const Text('Enviar request'),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                maximumSize: Size(MediaQuery.of(context).size.width * 0.6, 50),
+                minimumSize: Size(MediaQuery.of(context).size.width * 0.6, 50),
+                backgroundColor: currentTheme.primaryColor,
+              ),
+              label: const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Enviar request', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                    Icon(Icons.send),
+                  ],
+                ),
+              ),
             ),
+
             const SizedBox(height: 20),
-            ElevatedButton(
+
+            ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const RequestHistoryScreen()),
                 );
               },
-              child: const Text('Request enviados'),
+              style: ElevatedButton.styleFrom(
+                
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                maximumSize: Size(MediaQuery.of(context).size.width*0.6, 50),
+                minimumSize: Size(MediaQuery.of(context).size.width*0.6, 50),
+                backgroundColor: currentTheme.primaryColor,
+              ),
+              label: const Padding(
+                padding: EdgeInsets.all(5.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Request enviados', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                    Icon(Icons.history)
+                  ],
+                )
+              ),
             ),
           ],
         ),
