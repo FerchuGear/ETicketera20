@@ -1,7 +1,9 @@
+import 'package:eticketera20/providers/providers.dart';
 import 'package:eticketera20/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:pluto_menu_bar/pluto_menu_bar.dart';
+import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -29,32 +31,71 @@ class HomeScreen extends StatelessWidget {
             onSelected: (int result) {
               _menuAction(context, result);
             },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<int>>[
-              const PopupMenuItem<int>(
-                value: 1,
-                child: Text('Cambiar tema'),
-              ),
+            itemBuilder: (BuildContext context) {
+              bool isDarkTheme = Provider.of<ThemeNotifier>(context, listen: false).isDarkTheme;
+              return <PopupMenuEntry<int>>[
+                PopupMenuItem<int>(
+                  value: 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Text('Cambiar tema '),
+                      Icon(isDarkTheme ? Icons.wb_sunny : Icons.nights_stay),
+                    ],
+                  ),
+                ),
               const PopupMenuItem<int>(
                 value: 2,
-                child: Text('Notificaciones'),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text('Notificaciones '),
+                      Icon(Icons.notifications),
+                    ],
+                  ),
               ),
               const PopupMenuItem<int>(
                 value: 3,
-                child: Text('Políticas de privacidad'),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text('Políticas de privacidad '),
+                      Icon(Icons.policy),
+                    ],
+                  ),
               ),
               const PopupMenuItem<int>(
                 value: 4,
-                child: Text('Contacto'),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text('Contactos '),
+                      Icon(Icons.contact_phone),
+                    ],
+                  ),
               ),
               const PopupMenuItem<int>(
                 value: 5,
-                child: Text('Editar perfil'),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text('Editar perfil '),
+                      Icon(Icons.person),
+                    ],
+                  ),
               ),
               const PopupMenuItem<int>(
                 value: 6,
-                child: Text('Cerrar sesión'),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text('Cerrar sesión '),
+                      Icon(Icons.logout),
+                    ],
+                  ),
               ),
-            ],
+            ];
+            },
           ),
         ],
       ),
@@ -104,7 +145,7 @@ class HomeScreen extends StatelessWidget {
     switch (action) {
       case 1:
         // Alternar el tema
-        
+        Provider.of<ThemeNotifier>(context, listen: false).toggleTheme();
         break;
       case 3:
         Navigator.push(
