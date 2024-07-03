@@ -112,10 +112,10 @@ class HomeScreen extends StatelessWidget {
               child: GlassContainer(
                 width: MediaQuery.of(context).size.width * containerWidthPercentage,
                 height: MediaQuery.of(context).size.height * containerHeightPercentage,
-                blur: 5,
-                color: Colors.white.withOpacity(0.2),
+                blur: 6,
+                color: currentTheme.primaryColor.withOpacity(0.4), 
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Colors.white.withOpacity(0.5), width: 1.5),
+                border: Border.all(color: currentTheme.primaryColor.withOpacity(0.4), width: 1.5),
                 child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -174,7 +174,7 @@ class HomeScreen extends StatelessWidget {
                 backgroundColor: currentTheme.primaryColor,
               ),
               label: const Padding(
-                padding: EdgeInsets.all(5.0),
+                padding: EdgeInsets.all(6.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -234,4 +234,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

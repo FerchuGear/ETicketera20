@@ -25,10 +25,21 @@ class _LogInScreenState extends State<LogInScreen> {
         email: email,
         password: password,
       );
+      //final AuthResponse res = await supabase.auth.signInWithPassword(
+        //email: 'usuario@gmail.com',
+        //password: 'contraseña',
+      //);
       final Session? session = res.session;
       final User? user = res.user;
 
       if (user != null) {
+
+         final data = await supabase
+          .from('Users')
+          .select("*")
+          .eq('uid', user.id );
+      
+      
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),
