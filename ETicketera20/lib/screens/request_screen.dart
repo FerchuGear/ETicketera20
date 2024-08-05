@@ -11,7 +11,7 @@ class RequestScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Provider.of<ThemeNotifier>(context).currentTheme.appBarTheme.backgroundColor,
-        title: const Text('Enviar request'),
+        title: const Text('Notificar fallos'),
         leading: IconButton(
           icon: const Icon(Icons.home),
           onPressed: () {
@@ -96,6 +96,7 @@ class RequestScreen extends StatelessWidget {
           ),
         ],
       ),
+      
     );
   }
   void _menuAction(BuildContext context, int action) {

@@ -132,6 +132,34 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
+
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const OrderScreen()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                maximumSize: Size(MediaQuery.of(context).size.width * 0.6, 50),
+                minimumSize: Size(MediaQuery.of(context).size.width * 0.6, 50),
+                backgroundColor: currentTheme.primaryColor,
+              ),
+              label: const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Pedir notebooks', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                    Icon(Icons.computer_rounded),
+                  ],
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
             ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(
@@ -150,8 +178,8 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Enviar request', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-                    Icon(Icons.send),
+                    Text('Notificar fallos', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                    Icon(Icons.error_rounded),
                   ],
                 ),
               ),
@@ -179,7 +207,7 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Request enviados', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-                    Icon(Icons.history)
+                    Icon(Icons.history_rounded)
                   ],
                 )
               ),

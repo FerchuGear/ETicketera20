@@ -1,18 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:eticketera20/providers/providers.dart';
 import 'package:eticketera20/screens/screens.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-class ContactScreen extends StatelessWidget {
-  const ContactScreen({super.key});
+class OrderScreen extends StatelessWidget {
+  const OrderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Provider.of<ThemeNotifier>(context).currentTheme.appBarTheme.backgroundColor,
-        title: const Text('Contactos'),
+        title: const Text('Pedir notebooks'),
         leading: IconButton(
           icon: const Icon(Icons.home),
           onPressed: () {
@@ -96,73 +95,6 @@ class ContactScreen extends StatelessWidget {
             },
           ),
         ],
-      ),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Contactos',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Esta es la pantalla de contactos. Aquí encontrarás los eMails y numeros telefonicos de soporte tecnico, administración y de la escuela.',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 16),
-            Text(
-              '1. Recopilación de Datos',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Recopilamos la información que nos proporcionas cuando creas una cuenta, editas tu perfil o envías tickets de reclamo.',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 16),
-            Text(
-              '2. Uso de Datos',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Usamos tus datos para mejorar nuestra APP y proporcionar un mejor servicio. Esto incluye enviar notificaciones push y almacenar tu historial de tickets.',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 16),
-            Text(
-              '3. Compartición de Datos',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'No compartimos tus datos personales con terceros sin tu consentimiento, excepto cuando es necesario para cumplir con la ley.',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 16),
-            Text(
-              '4. Seguridad de Datos',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Tomamos medidas para proteger tus datos personales y asegurar que estén seguros.',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 16),
-            Text(
-              '5. Tus Derechos',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Tienes derecho a acceder, corregir y eliminar tus datos personales en cualquier momento.',
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
       ),
     );
   }

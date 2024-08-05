@@ -3,6 +3,7 @@ export 'package:eticketera20/screens/editprofile_screen.dart';
 export 'package:eticketera20/screens/ForgotPass_Screen.dart';
 export 'package:eticketera20/screens/home_screen.dart';
 export 'package:eticketera20/screens/login_screen.dart';
+export 'package:eticketera20/screens/order_screen.dart';
 export 'package:eticketera20/screens/privacy_screen.dart';
 export 'package:eticketera20/screens/register_screen.dart';
 export 'package:eticketera20/screens/request_screen.dart';

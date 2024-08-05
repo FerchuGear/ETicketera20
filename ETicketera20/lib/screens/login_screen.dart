@@ -39,7 +39,6 @@ class _LogInScreenState extends State<LogInScreen> {
           .select("*")
           .eq('uid', user.id );
       
-      
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),
